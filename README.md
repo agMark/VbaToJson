@@ -1,10 +1,11 @@
 # VbaToJson
 Excel VBA Macro to create JSON file
 
-This vba function will turn an excel array into a JSON string
+This vba function will turn an excel range into a JSON string
 
 In the selected range, the first line must be the column headers..
-data is formatted as follows
+data is formatted as follows:
+<code>
 {
   'data':[
     {
@@ -17,8 +18,8 @@ data is formatted as follows
     }
   ]
 }
-
-Usage: 
+</code>
+<h3>Usage:</h3> 
 =getJson(A1:K39)
 
 
