@@ -5,7 +5,7 @@ This vba function will turn an excel range into a JSON string
 
 In the selected range, the first line must be the column headers..
 data is formatted as follows:
-<code>
+```javascript
 {
   'data':[
     {
@@ -18,7 +18,7 @@ data is formatted as follows:
     }
   ]
 }
-</code>
+```
 <h3>Usage:</h3> 
 =getJson(A1:K39)
 
