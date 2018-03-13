@@ -1,5 +1,5 @@
 # VbaToJson
-Excel VBA Function to create JSON file
+Excel VBA Function to create JSON data
 
 This was created to convert some data from a PDF -> Excel -> JSON for a project of mine.  This isn't really meant as an adaptable and re-usable function but is posted here so I don't lose it again.
 
