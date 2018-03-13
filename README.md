@@ -9,18 +9,20 @@ In the selected range, the first line must be the column headers..
 data is formatted as follows:
 ```javascript
 {
-  'data':[
+  "data":[
     {
-      'header1':'dataline1_cell1',
-      'header2':'dataline1_cell2'
+      "header1":"dataline1_cell1",
+      "header2":"dataline1_cell2"
     },
     {
-      'header1':'dataline2_cell1',
-      'header2':'dataline2_cell2'    
+      "header1":"dataline2_cell1",
+      "header2":"dataline2_cell2"    
     }
   ]
 }
 ```
+All data is formatted as strings so if you need numbers, parse with nodejs or something.
+
 <h3>Usage:</h3> 
 =getJson(A1:K39)
 
