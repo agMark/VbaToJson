@@ -1,4 +1,4 @@
-Function getJson(dataRange As Range)
+Function getJson(dataRange As Range, writeToFile As Boolean)
     'This function will convert the selected data to a JSON text string
     'The first row of the selection must be column headers
     'All data is formatted as text...it's easy enough to run parseFloat if need be later
@@ -43,10 +43,38 @@ Function getJson(dataRange As Range)
         Else
             jsonString = jsonString & "}"
         End If
+        'Debug.Print i
     Next i
     
     jsonString = jsonString & "]}"
     
     jsonString = replace(jsonString, doubleQuoteReplace, Chr(34))
-    getJson = jsonString
+    If Len(jsonString) > 32767 Then
+        If writeToFile = True Then
+            getJson = "To many characters to display in cell...trying to write data to jsonString.js"
+            Dim fso As Object
+            Set fso = CreateObject("Scripting.FileSystemObject")
+        
+            Dim Fileout As Object
+            Set Fileout = fso.CreateTextFile("jsonString.js", True, True)
+            Fileout.Write jsonString
+            Fileout.Close
+        Else
+            getJson = "To many characters to display in cell...write to file disabled...see debug window"
+        End If
+
+    Else
+        getJson = jsonString
+        If writeToFile = True Then
+            Dim fso2 As Object
+            Set fso2 = CreateObject("Scripting.FileSystemObject")
+        
+            Dim Fileout2 As Object
+            Set Fileout2 = fso2.CreateTextFile("jsonString.js", True, True)
+            Fileout2.Write jsonString
+            Fileout2.Close
+        End If
+    End If
+
 End Function
+
