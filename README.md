@@ -24,6 +24,7 @@ data is formatted as follows:
 All data is formatted as strings so if you need numbers, parse with nodejs or something.
 
 <h3>Usage:</h3> 
-=getJson(A1:K39)
+=getJson(A1:K39,TRUE)
 
+First argument is the data range, Second argument is bool option to save to a file.  If true, JSON data is saved to jsonData.js in the same directory as the workbook.
 
