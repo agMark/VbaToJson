@@ -7,18 +7,33 @@ Function getJson(dataRange As Range)
     Dim numRows As Integer
     Dim jsonString As String
     
+    'quotation marks in the data can cause the JSON to be invalid
+    Dim doubleQuoteReplace As String
+    Dim singleQuoteReplace As String
+    doubleQuoteReplace = "~%#" ' note: Chr(34) is a double quote
+    singleQuoteReplace = "^*&" ' note: Chr(39) is a single quote
+    Dim dataValue As String
+    
+    
     numCols = dataRange.Columns.Count
     numRows = dataRange.Rows.Count
     
-    X = dataRange.Cells(3, 1).Value
     
-    jsonString = "{'data':["
+    jsonString = "{" & doubleQuoteReplace & "data" & doubleQuoteReplace & ":["
     X = dataRange.Cells(1, 8)
     For i = 2 To numRows
         jsonString = jsonString & "{"
         For j = 1 To numCols
-            jsonString = jsonString & "'" & dataRange.Cells(1, j).Value & "':"
-            jsonString = jsonString & "'" & dataRange.Cells(i, j).Value & "'"
+            dataValue = dataRange.Cells(i, j).Value
+            'Get rid of double and single quotes
+            dataValue = replace(dataValue, Chr(13), " ") 'change new lines to spaces
+            dataValue = replace(dataValue, Chr(10), "") 'get rid of carriage returns
+            dataValue = replace(dataValue, """", doubleQuoteReplace) 'double quotes
+            dataValue = replace(dataValue, "'", singleQuoteReplace) 'single quotes
+            
+            
+            jsonString = jsonString & doubleQuoteReplace & dataRange.Cells(1, j).Value & doubleQuoteReplace & ":"
+            jsonString = jsonString & doubleQuoteReplace & dataValue & doubleQuoteReplace
             If j < numCols Then
                 jsonString = jsonString & ","
             End If
@@ -32,5 +47,6 @@ Function getJson(dataRange As Range)
     
     jsonString = jsonString & "]}"
     
+    jsonString = replace(jsonString, doubleQuoteReplace, Chr(34))
     getJson = jsonString
 End Function
