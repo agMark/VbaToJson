@@ -28,3 +28,5 @@ All data is formatted as strings so if you need numbers, parse with nodejs or so
 
 First argument is the data range, Second argument is bool option to save to a file.  If true, JSON data is saved to jsonData.js in the same directory as the workbook.
 
+NOTE:
+The text saved to jsonString.js is encoded in UCS-2.  To process with nodejs script, it'll probably be necessary to convert to UTF-8 Without BOM.  If simply converted to UTF-8, a question mark usually is shown in position 0 when you run readFile().
