@@ -57,6 +57,7 @@ Function getJson(dataRange As Range, writeToFile As Boolean)
         
             Dim Fileout As Object
             Set Fileout = fso.CreateTextFile("jsonString.js", True, True)
+
             Fileout.Write jsonString
             Fileout.Close
         Else
@@ -71,6 +72,7 @@ Function getJson(dataRange As Range, writeToFile As Boolean)
         
             Dim Fileout2 As Object
             Set Fileout2 = fso2.CreateTextFile("jsonString.js", True, True)
+
             Fileout2.Write jsonString
             Fileout2.Close
         End If
